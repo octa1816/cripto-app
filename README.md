@@ -43,7 +43,6 @@ CoinDetail.jsx
 Watchlist.jsx
 
 markdown
-Copiar
 
 ## 🔗 Endpoints usados (CoinGecko)
 - Top 10:
@@ -55,22 +54,22 @@ GET /api/v3/coins/markets
 &price_change_percentage=24h
 
 diff
-Copiar
+
 - Detalle:
 GET /api/v3/coins/{id}
 
 diff
-Copiar
+
 - Histórico:
 GET /api/v3/coins/{id}/market_chart?vs_currency=usd&days=7|30|1
 
 diff
-Copiar
+
 - Por IDs (watchlist):
 GET /api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,...
 
 bash
-Copiar
+
 
 > Cambiá `vs_currency` por `usd|eur|ars`. La API pública tiene **límites de rate**; evitá hacer fetch en exceso (usa polling moderado y `useEffect` con dependencias).
 
@@ -118,10 +117,7 @@ i18n (ES/EN) y PWA (offline + installable).
 📄 Licencia
 MIT © 2025 — Hecho por octa1816
 
-markdown
-Copiar
 
-¿Querés que además te agregue unas **capturas** y un pequeño **badge** de deploy cuando lo subas a Vercel/Netlify?
 
 
 
