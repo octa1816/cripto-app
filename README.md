@@ -68,11 +68,6 @@ diff
 - Por IDs (watchlist):
 GET /api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,...
 
-bash
-
-
-> Cambiá `vs_currency` por `usd|eur|ars`. La API pública tiene **límites de rate**; evitá hacer fetch en exceso (usa polling moderado y `useEffect` con dependencias).
-
 ## 🛠️ Instalación
 ```bash
 # Clonar
