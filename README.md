@@ -1,12 +1,131 @@
-# React + Vite
+# Cripto App — Top 10 Cryptos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SPA en React (Vite) que muestra el **Top 10** de criptomonedas por market cap, con **búsqueda, orden**, **sparkline 7d**, **detalle con gráfico**, **selector de moneda (USD/EUR/ARS)**, **watchlist (★)** y **modo oscuro**. Usa la **API pública de CoinGecko**.
 
-Currently, two official plugins are available:
+## 🚀 Demo
+- (Opcional) Deploy en Vercel/Netlify: importá el repo y usá `npm run build` con directorio de salida `dist`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧰 Stack
+- **React + Vite**
+- **React Router**
+- **Recharts** (gráficos)
+- **CoinGecko API** (sin key)
+- CSS plano (dark mode con class `dark`)
+- `localStorage` para favoritos
 
-## Expanding the ESLint configuration
+## ✨ Funcionalidades
+- **Top 10** por capitalización con: precio, % 24h y sparkline 7d.
+- **Búsqueda** por nombre/símbolo y **orden** (market cap, precio, %24h).
+- **Detalle** de cada moneda con histórico 24h/7d/30d (línea).
+- **Watchlist (★)**: agrega/quita favoritos y se guarda en `localStorage`.
+- **Selector de moneda**: USD, EUR, **ARS**.
+- **Dark mode** persistente.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Estructura
+src/
+App.jsx
+main.jsx
+styles.css
+lib/
+api.js
+hooks/
+useDebounce.js
+useLocalStorage.js
+components/
+CoinRow.jsx
+CurrencySelector.jsx
+FavButton.jsx
+Sparkline.jsx
+ToggleTheme.jsx
+pages/
+Top10.jsx
+CoinDetail.jsx
+Watchlist.jsx
+
+markdown
+Copiar
+
+## 🔗 Endpoints usados (CoinGecko)
+- Top 10:
+GET /api/v3/coins/markets
+?vs_currency=usd
+&order=market_cap_desc
+&per_page=10&page=1
+&sparkline=true
+&price_change_percentage=24h
+
+diff
+Copiar
+- Detalle:
+GET /api/v3/coins/{id}
+
+diff
+Copiar
+- Histórico:
+GET /api/v3/coins/{id}/market_chart?vs_currency=usd&days=7|30|1
+
+diff
+Copiar
+- Por IDs (watchlist):
+GET /api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,...
+
+bash
+Copiar
+
+> Cambiá `vs_currency` por `usd|eur|ars`. La API pública tiene **límites de rate**; evitá hacer fetch en exceso (usa polling moderado y `useEffect` con dependencias).
+
+## 🛠️ Instalación
+```bash
+# Clonar
+git clone https://github.com/octa1816/cripto-app.git
+cd cripto-app
+
+# Instalar deps
+npm install
+npm i react-router-dom recharts
+
+# Levantar en dev
+npm run dev
+
+# Build de producción
+npm run build
+⚙️ Configuración
+Moneda por defecto: en App.jsx → const [currency, setCurrency] = useState('usd')
+
+Dark mode: ToggleTheme.jsx usa localStorage('theme') y prefers-color-scheme.
+
+🧩 Notas técnicas
+Watchlist: guarda un array de IDs en localStorage('watchlist').
+
+Sparkline: Sparkline.jsx renderiza línea compacta con Recharts.
+
+Accesibilidad: imágenes con alt={coin.name} y colores contrastados.
+
+🚢 Deploy rápido
+Vercel: “New Project” → Importar repo → Framework: Vite → Build: npm run build → Output: dist.
+
+Netlify: “New site from Git” → Build: npm run build → Publish dir: dist.
+
+🧭 Roadmap (mejoras futuras)
+Paginación (Top 50/100) y filtros avanzados.
+
+Alertas de precio (notificación visual al tocar un umbral).
+
+Gráfico de velas en detalle.
+
+i18n (ES/EN) y PWA (offline + installable).
+
+📄 Licencia
+MIT © 2025 — Hecho por octa1816
+
+markdown
+Copiar
+
+¿Querés que además te agregue unas **capturas** y un pequeño **badge** de deploy cuando lo subas a Vercel/Netlify?
+
+
+
+
+
+
+Preguntar a ChatGPT
