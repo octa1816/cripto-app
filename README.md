@@ -115,8 +115,3 @@ MIT © 2025 — Hecho por octa1816
 
 
 
-
-
-
-
-Preguntar a ChatGPT
